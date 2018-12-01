@@ -1,6 +1,6 @@
 tareas();
 console.log(document.forms.formRegistrar.user.value);
-document.querySelector("#formRegistrar").addEventListener('submit', function (e) {
+document.querySelector("#formRegistrar").addEventListener('submit', function(e) {
     e.preventDefault();
     let data = {
         user: document.forms.formRegistrar.user.value,
@@ -9,7 +9,7 @@ document.querySelector("#formRegistrar").addEventListener('submit', function (e)
     }
     console.log(data);
     fetch('/users', {
-        method: "Post",
+        method: "POST",
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json'
@@ -45,21 +45,21 @@ document.forms.formUpdate.addEventListener("submit", function (e) {
 });
 
 function tareas() {
-    fetch('users', {
+    fetch('/users', {
         method: 'GET'
     }).then(res => res.json()).then(data => {
         let filas = "";
         data.forEach(element => {
-            filas = filas + `<tr>
+            filas = filas + <tr>
             <td>${element._id}</td>
             <td>${element.userName}</td>
             <td>${element.password}</td>
             <td>${element.rol}</td>
-            <td>
+            <td class="d-flex justify-content-center">
                 <a href="/users/${element._id}" class="update btn " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt"></i></a>
                 <a href="/users/${element._id}" class="delete btn btn-danger"><i class="fas fa-minus"></i></a>
             </td>
-            </tr>`
+            </tr>
         });
         document.querySelector("#filas").innerHTML = filas;
         let btn_update = document.querySelectorAll('.update');
@@ -77,22 +77,23 @@ function tareas() {
                 });
             });
         });
-    });
-    let btn_delete = document.querySelectorAll('.delete');
-    btn_delete.forEach(item => {
-        item.addEventListener("click", function (e) {
-            e.preventDefault();
-            let url = this["href"];
-            console.log(url);
-            fetch(url, {
-                method: "DELETE"
-            }).then(res => res.json()).then(response => {
-                alert("Eliminado con exito");
-                tareas();
-            }).catch(err => {
-                alert("Ocurrio un error");
-                console.log(err);
-            });
+        let btn_delete = document.querySelectorAll('.delete');
+        btn_delete.forEach(item => {
+            item.addEventListener("click", function (e) {
+                e.preventDefault();
+                let url = this["href"];
+                console.log(url);
+                fetch(url, {
+                    method: "DELETE"
+                }).then(res => res.json()).then(response => {
+                    alert("Eliminado con exito");
+                    tareas();
+                }).catch(err => {
+                    alert("Ocurrio un error");
+                    console.log(err);
+                });
+            })
         })
     })
 };
+

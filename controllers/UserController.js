@@ -30,6 +30,7 @@ userController.update = async function(req,res,next){
     let {id}=req.params;
     let user = {
         userName:req.body.user,
+        password:req.body.password,
         rol:req.body.rol
     }
     console.log(user);
