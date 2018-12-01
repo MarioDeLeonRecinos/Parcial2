@@ -51,12 +51,13 @@ function tareas() {
         let filas = "";
         data.forEach(element => {
             filas = filas + `<tr>
+            <td>${element._id}</td>
             <td>${element.userName}</td>
             <td>${element.password}</td>
             <td>${element.rol}</td>
             <td>
-                <a href="/users/${element._id}" class="update btn btn-warning" data-toggle="modal" data-target="#exampleModal">Actualizar</a>
-                <a href="/users/${element._id}" class="delete btn btn-danger">Eliminar</a>
+                <a href="/users/${element._id}" class="update btn " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt"></i></a>
+                <a href="/users/${element._id}" class="delete btn btn-danger"><i class="fas fa-minus"></i></a>
             </td>
             </tr>`
         });
