@@ -50,7 +50,7 @@ function tareas() {
     }).then(res => res.json()).then(data => {
         let filas = "";
         data.forEach(element => {
-            filas = filas + <tr>
+            filas = filas + `<tr>
             <td>${element._id}</td>
             <td>${element.userName}</td>
             <td>${element.password}</td>
@@ -59,7 +59,7 @@ function tareas() {
                 <a href="/users/${element._id}" class="update btn " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt"></i></a>
                 <a href="/users/${element._id}" class="delete btn btn-danger"><i class="fas fa-minus"></i></a>
             </td>
-            </tr>
+            </tr>`
         });
         document.querySelector("#filas").innerHTML = filas;
         let btn_update = document.querySelectorAll('.update');
